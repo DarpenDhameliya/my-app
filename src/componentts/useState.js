@@ -5,7 +5,7 @@ import React,{useState} from 'react'
 export default function Textform(props) {
     const[text,setText] = useState("enter the text")
     const convertupp = () => {
-        console.log("clicked" , " : "+ text);
+        //console.log("clicked" , " : "+ text);
         let newText = text.toUpperCase();
         setText(newText)
         props.MessShow(" Converted to uppercase" , "success")
@@ -13,14 +13,14 @@ export default function Textform(props) {
     }
     
     const convertlow = () =>{
-        console.log("enterd" , " : " + text )
+        //console.log("enterd" , " : " + text )
         let newsText = text.toLowerCase();
         setText(newsText)
         props.MessShow("Converted to Lowercase" , "success")
     }
 
     const handlecha = (event) => {
-        console.log("done")
+       //console.log("done")
         setText(event.target.value)
     }
     const listen = () => {
@@ -39,18 +39,18 @@ export default function Textform(props) {
         <>
         <div className='body' style={{color:"gray"}} >
             <div className="stat">
-                <h1>{props.heading}</h1>
+                <h1 className='mb-4'>{props.heading}</h1>
                 <textarea className="form-control " onChange={handlecha} value={text} id="box" rows="5"></textarea>  
                 
                 <div style={myStyle}>
-                <button className='btn mx-1 my-1'  onClick={convertupp}> upper</button>
-                <button className='btn mx-1 my-1' onClick={convertlow}> lower</button>
-                <button type="submit mx-1 my-1" onClick={listen} className="btn">listen</button>
+                <button disabled={text.length===0} className='btn mx-1 my-1'  onClick={convertupp}> upper</button>
+                <button disabled={text.length===0} className='btn mx-1 my-1' onClick={convertlow}> lower</button>
+                <button disabled={text.length===0} onClick={listen} className="btn mx-1 my-1">listen</button>
                 </div>
             </div>
             <div>
                 <h1>Count Word and Charecter </h1>
-                <p>{text.split(" ").filter((element)=> {return element.length!==0}).length} Word and {text.length} charecter</p>
+                <p>{text.split(/\s+/).filter((element)=> {return element.length!==0}).length} Word and {text.length} charecter</p>
             </div>
             <div>
                 <h1>priview</h1>
